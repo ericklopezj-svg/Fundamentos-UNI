@@ -120,8 +120,8 @@ void quickSort (int arr[], int inicio, int fin) {
         quickSort (arr, indPivote + 1, fin);
     }
 
-
 }
+
 int main() {
     int arr[] = {99, 57, 4, 2, 15, 84, 72};
     int n = sizeof(arr) / sizeof(arr[0]);
