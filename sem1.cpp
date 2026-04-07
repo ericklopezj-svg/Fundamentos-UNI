@@ -23,11 +23,13 @@ void bubbleSort (int arr[], int n) {
 void selectionSort (int arr[], int n){
     for (int i=0; i<n - 1; i++) {
         int min = i;
-        for (int j=i + 1; j<n; j++) {
+        //Aclarar tambien que buscamos el menor desde la derecha de nuestra posicion actual
+        for (int j=i + 1; j<n; j++) { //Aqui lo que aclaramos, el for va desplazandose ya que va dejando ordenado a la izquierda
             if (arr[j] < arr[min]) {
                 min = j;
             }
         }
+        //Colocamos el menor en la posicion i actual
         int temp = arr[min];
         arr[min] = arr[i];
         arr[i] = temp;
@@ -36,13 +38,16 @@ void selectionSort (int arr[], int n){
 
 
 void insertionSort (int arr[], int n) {
-    for (int i=1; i<n; i++) {
-        int temp = arr[i]; // tomo mi carta
-        int j = i - 1;
+    for (int i=1; i<n; i++) { //desde 1, ya que en este metodo comparamos con el de la izquierda, si estamos en 0 no podriamos comparar
+        int temp = arr[i]; // tomo mi carta para que no se pierda, ya que abajo al correr para dejar el hueco la perderé
+        int j = i - 1; //sirve para ayudarnos a comparar con el de la izquierda de nuestra posi actual que es i
 
-        while (j >= 0 && arr[j] > temp) {
-            arr[j + 1] = arr[j];
-            j = j - 1;
+        /*cuando estamos ya por la mitad, notaremos que solo compara con el que esta justo a la izquierda y luego sale del while, esto es 
+        suficiente ya que todo lo izquierda ya esta ordenado*/
+
+        while (j >= 0 && arr[j] > temp) { //Mientras NO llegue al inicio Y sea mayor que mi carta...
+            arr[j + 1] = arr[j]; //las corro hacia la derecha generando el hueco para mi carta
+            j = j - 1; //para seguir comparando con el de la izquierda, hasta llegar al inicio
         }
         
         arr[j + 1] = temp; // el j + 1 justamente es el hueco que hice para mi carta, asi que meto mi carta aqui
@@ -50,18 +55,18 @@ void insertionSort (int arr[], int n) {
 }
 
 void mezclar (int arr[], int temp[], int inicio, int medio, int fin) {
-    for (int i=inicio; i<=fin; i++) {
+    for (int i=inicio; i<=fin; i++) { //copiamos el arreglo a uno temporal
         temp[i] = arr[i];
     }
 
-    int i = inicio;
-    int j = medio + 1;
-    int k = inicio; //para ir redactando el arreglo original
+    int i = inicio; //se encargara de recorrer toda la mitad izquierda hasta el medio
+    int j = medio + 1; // toda la mitad derecha, desde el medio hasta el fin
+    int k = inicio; //para ir redactando en el arreglo original
 
     while (i <= medio && j <= fin) {
         if (temp[i] <= temp[j]) {
-            arr[k] = temp[i];
-            i++;
+            arr[k] = temp[i]; 
+            i++; //como el de la mitad izquierda fue menor, corremos para que compare el siguiente
         } else {
             arr[k] = temp[j];
             j++;
@@ -76,7 +81,7 @@ void mezclar (int arr[], int temp[], int inicio, int medio, int fin) {
         k++;
     }
 
-    //si quedase en la mitad derecha ya no es necesario, ya que ya esta donde debe estar
+    //si quedáse en la mitad derecha ya no es necesario, ya que ya está donde debe estar
 }
 
 void mergeSort (int arr[], int temp[], int inicio, int fin) {
