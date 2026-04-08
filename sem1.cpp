@@ -21,10 +21,10 @@ void bubbleSort (int arr[], int n) {
 }
 
 void selectionSort (int arr[], int n){
-    for (int i=0; i<n - 1; i++) {
+    for (int i = 0; i < n - 1; i++) { //solo hasta el penultimo ya que el ultimo ya no tiene con quien compararse y esta en el lugar correcto
         int min = i;
         //Aclarar tambien que buscamos el menor desde la derecha de nuestra posicion actual
-        for (int j=i + 1; j<n; j++) { //Aqui lo que aclaramos, el for va desplazandose ya que va dejando ordenado a la izquierda
+        for (int j = i + 1; j < n; j++) { //Aqui lo que aclaramos, el for va desplazandose ya que va dejando ordenado a la izquierda
             if (arr[j] < arr[min]) {
                 min = j;
             }
@@ -127,6 +127,48 @@ void quickSort (int arr[], int inicio, int fin) {
 
 }
 
+
+int binariaIterativa (int arr[], int tam, int objetivo) {
+    int bajo = 0; //es la pared baja que limita la busqueda
+    int alto = tam - 1; //es la pared superior que limita la busqueda
+
+    while (bajo <= alto) {
+        int medio = bajo + (alto - bajo)/2;
+
+        if (arr[medio] == objetivo) {
+            return medio;
+        }
+
+        if (arr[medio] < objetivo) {
+            bajo = medio + 1; //movemos la pared a la derecha del medio, descartamos toda la mitad izquierda
+        } else {
+            alto = medio - 1; //bajamos la pared sup a antes del medio, descartamos toda la mitad derecha
+        }
+    }
+
+    return -1; //en caso que salga del while porque las paredes se HAYAN CRUZADO sin encontrar al objetivo
+}
+
+int binariaRecursiva (int arr[], int bajo, int alto, int objetivo) {
+
+    if (bajo > alto) { //SI ES ASI >, NPO SE CONSIDERA EL >=
+        return -1; //CASO BASE, la recursion debe tener una paradinha
+    }
+
+    int medio = bajo + (alto - bajo)/2;
+
+    if (arr[medio] == objetivo) {
+        return medio;
+    }
+
+    //no queremos descascarar hasta llegar a un piso, y desde ahi regresar; queremos descartar sin regreso ES POR ESO EL RETURN
+    if (arr[medio] < objetivo) {
+        return binariaRecursiva (arr, medio + 1, alto, objetivo);
+    } else {
+        return binariaRecursiva (arr, bajo, medio - 1, objetivo);
+    }
+
+}
 int main() {
     int arr[] = {99, 57, 4, 2, 15, 84, 72};
     int n = sizeof(arr) / sizeof(arr[0]);
