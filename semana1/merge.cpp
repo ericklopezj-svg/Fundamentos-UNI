@@ -11,11 +11,11 @@ void mezclar (int arr[], int temp[], int inicio, int medio, int fin) {
     int k = inicio;
 
     while (i <= medio && j <= fin) {
-        if (temp[i] > temp[j]) {
-            arr[k] = arr[j];
+        if (temp[i] > temp[j]) { 
+            arr[k] = temp[j];
             j++;
         } else {
-            arr[k] = arr[i];
+            arr[k] = temp[i];
             i++;
         }
         k++;
@@ -29,7 +29,7 @@ void mezclar (int arr[], int temp[], int inicio, int medio, int fin) {
 }
 
 void mergeSort (int arr[], int temp[], int inicio, int fin) {
-    while (inicio < fin) {
+    if (inicio < fin) {
         int medio = inicio + (fin - inicio)/2;
 
         mergeSort (arr, temp, inicio, medio);
