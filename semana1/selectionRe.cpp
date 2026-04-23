@@ -22,3 +22,16 @@ void selectionSRe (int arr[], int inicio, int fin) {
     
     selectionSRe (arr, inicio + 1, fin);
 }
+
+int main() {
+    int arr[] = {12, 11, 13, 5, 6};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    selectionSRe (arr, 0, n - 1);
+
+    cout << "Sorted array: \n";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    return 0;
+
+}

@@ -17,3 +17,4 @@ void insertionSRe (int arr[], int n) {
 
     arr[j + 1] = temp;
 }
+
