@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream> // Librería obligatoria para usar archivos
+#include <string>
 
 using namespace std;
 
