@@ -25,6 +25,7 @@ void registrar (fstream &archivo) {
 }
 
 
+
 void swipearArchivo (fstream &archivo, int posElementoMayor, int posActual) {
     Alumno Atemp1, Atemp2;
     //leemos y guardamos ambos elementos
